@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Thiri’s Cozy Website ❄️💛</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+/* ---------------- BASIC STYLE ---------------- */
+body {
+  margin: 0;
+  padding: 0;
+  background: #FFE8F6;
+  font-family: "Poppins", sans-serif;
+  transition: background 0.6s ease;
+  overflow-x: hidden;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 2.3rem;
+  color: #FF72B6;
+  animation: float 3s ease-in-out infinite;
+}
+
+p { line-height: 1.6; }
+
+/* Container */
+.page {
+  display: none;
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+.active { display: block; }
+
+/* Buttons */
+button, .nav-btn {
+  padding: 12px 20px;
+  background: white;
+  border-radius: 25px;
+  border: none;
+  margin: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #FF72B6;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: transform .2s;
+}
+button:hover, .nav-btn:hover {
+  transform: scale(1.1);
+}
+
+.color-buttons button {
+  margin: 6px;
+}
+
+/* Cards */
+.tip-card {
+  background: white;
+  padding: 18px;
+  margin: 15px 0;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  animation: pop .6s ease;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Sparkles */
+.sparkles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: pink;
+  opacity: 0.7;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  from { transform: translateY(-20px) rotate(0); }
+  to { transform: translateY(120vh) rotate(360deg); }
+}
+</style>
+</head>
+<body>
+
+<div class="sparkles"></div>
+
+<!-- ---------------- NAVIGATION ---------------- -->
+<nav style="text-align:center; margin-top:20px;">
+  <button class="nav-btn" onclick="showPage('home')">🏠 Home</button>
+  <button class="nav-btn" onclick="showPage('tips')">❄️ Warm Tips</button>
+  <button class="nav-btn" onclick="showPage('about')">💌 Message</button>
+</nav>
+
+<!-- ---------------- HOME PAGE ---------------- -->
+<div id="home" class="page active">
+  <h1>❄️ Welcome, Thiri ❄️</h1>
+  <p>
+    Hi Thiri!  
+    This whole cozy little corner was made **just for you**,  
+    to warm you up, make you smile,  
+    and wrap you in the softest warm feelings. 💛✨  
+    Created with love by <b>Wyine</b>.
+  </p>
+
+  <h2>🎨 Change Background Color</h2>
+  <div class="color-buttons">
+    <button onclick="changeBG('#FFE8F6')">Pink</button>
+    <button onclick="changeBG('#E0F4FF')">Blue</button>
+    <button onclick="changeBG('#FFF7C8')">Yellow</button>
+    <button onclick="changeBG('#E4FFE5')">Mint</button>
+    <button onclick="changeBG('#FFFFFF')">White</button>
+  </div>
+</div>
+
+<!-- ---------------- TIPS PAGE ---------------- -->
+<div id="tips" class="page">
+  <h1>☕ Stay Warm, Thiri</h1>
+
+  <div class="tip-card"><h3>🧣 Layer Up</h3><p>Snuggle into soft warm layers, like a hug just for you!</p></div>
+  <div class="tip-card"><h3>🧤 Warm Hands & Feet</h3><p>Gloves, socks, and a cute scarf will keep you cozy.</p></div>
+  <div class="tip-card"><h3>🏃 Move Around</h3><p>A tiny dance warms you up fast, Thiri! 🎶</p></div>
+  <div class="tip-card"><h3>☕ Hot Drinks</h3><p>Tea, cocoa, or soup — warmth from the inside.</p></div>
+  <div class="tip-card"><h3>🛋️ Cozy Spots</h3><p>A soft blanket and comfy pillow for your sweet comfort.</p></div>
+  <div class="tip-card"><h3>🔥 Heat Packs</h3><p>Your hands will thank you!</p></div>
+</div>
+
+<!-- ---------------- ABOUT PAGE ---------------- -->
+<div id="about" class="page">
+  <h1>💌 A Warm Message for Thiri</h1>
+  <p class="tip-card">
+    Dear Thiri,  
+    I hope this little cozy website warms your heart  
+    just like you warm mine.  
+    Wrap yourself in comfort and happiness —  
+    and feel the warm hug I'm sending your way.  
+    <br><br>
+    With warmth and care,  
+    <b>Wyine ❄️💛✨</b>
+  </p>
+</div>
+
+<!-- ---------------- JAVASCRIPT ---------------- -->
+<script>
+/* Switch pages */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* Background changer */
+function changeBG(color) {
+  document.body.style.background = color;
+}
+
+/* Sparkles */
+function createSparkle() {
+  const s = document.createElement("div");
+  s.className = "sparkle";
+  s.style.left = Math.random() * window.innerWidth + "px";
+  s.style.background = ["#FFC3E9","#FFD4F4","#FF9AD5","#FFAFEC"][Math.floor(Math.random()*4)];
+  s.style.animationDuration = (2 + Math.random()*3) + "s";
+  document.querySelector(".sparkles").appendChild(s);
+  setTimeout(() => s.remove(), 5000);
+}
+setInterval(createSparkle, 300);
+</script>
+
+</body>
+</html>
